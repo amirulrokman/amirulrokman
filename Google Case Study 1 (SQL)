@@ -1,0 +1,17 @@
+Select member_casual, COUNT(member_casual) as number_of_rides
+From "202211_divvy_tripdata"
+group by member_casual
+--number of rides
+
+--Number of rides by each type of bike 
+Select rideable_type, COUNT(rideable_type) as number_of_rides, member_casual
+From "202211_divvy_tripdata"
+Group by rideable_type, member_casual
+
+--Top Five Start Station
+Select Distinct start_station_name as station_name, COUNT(start_station_name) as num_of_trips_started, COUNT(end_station_name) as num_of_trips_ended, member_casual
+From "202211_divvy_tripdata"
+WHERE station_name IS NOT NULL
+Group by start_station_name, member_casual
+order by num_of_trips_started desc, num_of_trips_ended desc
+LIMIT 7
